@@ -1,0 +1,11 @@
+# Raw data: keep the folder, ignore its contents
+data/raw/*
+!data/raw/.gitkeep
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+.ipynb_checkpoints/
