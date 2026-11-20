@@ -8,7 +8,9 @@ as the rubric's four-page document.
 ## Recorded local verification
 
 - `ruff check .` and `ruff format --check .`: passed.
-- `pytest -q --cov=src`: **33 passed**, source coverage **83%** (4.24 s for this local run).
+- `pytest -q --cov=src`: **38 passed**, source coverage **83%** (4.33 s for this local run).
+- Space uploader: offline tests verify package contents, token/repo configuration
+  and Docker SDK checks. A live Hub upload has not been executed.
 - `bash scripts/smoke.sh`: passed from a new temporary synthetic-data root,
   including the three baseline runs, model runs, export and an API request.
 - Four implemented feature ablations were also executed successfully in the local demo experiment.
@@ -43,7 +45,9 @@ there are **no real-data model results** in this implementation check-in.
 
 Out of scope for this check-in: official advisory decisions, daily labels on
 unsampled days, external rainfall/tides, live ingestion, full experiment matrix,
-automatic Hub/Space publication, scheduled refresh/retraining and authentication.
+Hub model publication/download, automatic Space deployment on push, scheduled
+refresh/retraining and authentication. Manual Space source upload is available;
+hosted prediction readiness still requires model/history artifact deployment.
 
 Work distribution to confirm before submission: Shumeng owns specs 03 (features)
 and 06 (API). The team should insert the agreed owners for 01–02, 04–05 and 07–08;
@@ -194,7 +198,7 @@ after executing the suite; don't copy a stale CI badge as evidence.
 | 04 | Three baselines, chronological split, metrics, grouped CSVs, local MLflow | Complete PR/calibration plot set and detailed final-run breakdown artifacts |
 | 05 | Logistic grid, forward cross-fit sigmoid calibration, threshold/gate, pyfunc registration, four feature ablations | Full 30-trial/early-stopping LightGBM, remaining ablations, plots, complete subgroup/model-card analysis |
 | 06 | Health/predict, pinned model, feature hash/signature checks, date bounds, errors, demo annotation | Broader acceptance fixtures and production snapshot integration |
-| 07 | Verified local export and manifest, CLI smoke, non-root Dockerfile | Hub/Space upload/download, revision-pinned refresh/rollback, full hosted load/resource checks |
+| 07 | Verified local export and manifest, CLI smoke, non-root Dockerfile, manual Space source upload workflow | Hub model upload/download, hosted readiness, revision-pinned refresh/rollback, full hosted load/resource checks |
 | 08 | Lint/test/smoke/data-guard workflow and same local commands | Actual hosted Actions run after pushing and branch-protection setup |
 
 Implementation notes: use spec 03 canonical names throughout, with all cleaned

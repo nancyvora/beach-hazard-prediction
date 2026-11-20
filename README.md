@@ -114,8 +114,40 @@ docker run --rm -p 7860:7860 \
 
 Use the same demo curl request above to check the container. It runs as UID 1000
 and gets artifacts from a read-only mount; they are absent from the built image.
-For a production snapshot, replace the mount source. Hub download/upload, hosted
-Space deployment, rollback and the full spec 07 load test remain pending.
+For a production snapshot, replace the mount source. Hub model download/upload,
+hosted prediction readiness, rollback and the full spec 07 load test remain pending.
+
+## Upload app code to a Hugging Face Space
+
+Create a **Docker Space** on Hugging Face. A model repository alone does not run
+the API. In this GitHub repository, open **Settings → Secrets and variables →
+Actions** and configure:
+
+| Tab | Name | Value |
+| --- | --- | --- |
+| Secrets | `HF_TOKEN` | Hugging Face token with write access to your Space |
+| Variables | `HF_SPACE_REPO` | `your-username/your-space-name` (not the full URL) |
+
+Then open **Actions → Upload code to Hugging Face Space → Run workflow**, select
+`main` and run it. This is a manual workflow: pushing to GitHub alone does not
+upload to Hugging Face. The runner installs the upload SDK and sends the Dockerfile,
+serving requirements and Python app/deploy sources. It uses `deploy/space_README.md`
+as the Space's root `README.md` so Hugging Face detects Docker and port 7860.
+It updates those files without deleting unrelated files in the destination.
+Your laptop and local Docker do not need to be running during the upload.
+
+Inspect the Space's **Files** and build logs after the workflow succeeds. When the
+app starts, open `/docs` to see the API. **Source upload alone does not provide
+predictions:** the current container still needs a verified model/history export
+at `/home/user/app/artifacts`. Until that separate step is implemented/configured,
+`/health` and `/predict` return 503. Raw datasets, model files, local tokens and
+proposal PDFs are excluded from this source package.
+
+To inspect the package locally without a token or any upload:
+
+```bash
+python -m deploy.push_space --dry-run
+```
 
 ## Checks
 

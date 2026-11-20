@@ -1,1 +1,1 @@
-"""Local export and dry-run deployment tooling; no automatic publishing."""
+"""Local model export, explicit Space source upload and deployment checks."""
