@@ -13,11 +13,13 @@ env:
   MLFLOW_DISABLE_AGENT_HINT: "1"
 
 jobs:
+  # The exact Python in .python-version has x64 builds for Ubuntu 24.04.
+  # Do not float to a newer Ubuntu image before checking that build exists.
   lint:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
         with:
           python-version-file: .python-version
           cache: pip
@@ -25,10 +27,10 @@ jobs:
       - run: pip install -r requirements-dev.txt
       - run: ruff check . && ruff format --check .
   test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
         with:
           python-version-file: .python-version
           cache: pip
@@ -36,10 +38,10 @@ jobs:
       - run: pip install -r requirements-dev.txt
       - run: pytest -q --cov=src
   smoke:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
         with:
           python-version-file: .python-version
           cache: pip
@@ -47,10 +49,10 @@ jobs:
       - run: pip install -r requirements-dev.txt
       - run: bash scripts/smoke.sh
   data-guard:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
         with:
           python-version-file: .python-version
       - run: python scripts/check_repo_files.py

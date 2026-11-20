@@ -18,8 +18,11 @@ as the rubric's four-page document.
 - Final local-container benchmark: 20 sequential requests, p95 **0.014 s**;
   50 requests with 10 concurrent workers, p95 **0.236 s**; no failed requests.
   This is a two-station synthetic request, not a full-data or hosted-Space benchmark.
-- Working-tree data/size guard and CI YAML checks: passed. Hosted GitHub Actions
-  has not run for this uncommitted implementation; no green hosted result is claimed.
+- Working-tree data/size guard and CI YAML checks: passed. The first hosted run
+  stopped before tests because Ubuntu 26.04 lacked the pinned Python 3.13.12 x64
+  build. The workflow now pins Ubuntu 24.04 and uses current Actions versions.
+  The repository Actions page/badge shows the current hosted result, independently
+  of the local verification above.
 
 The suite passes with third-party deprecation warnings from the installed web,
 MLflow and pandas integrations. Real-data accuracy, the full LightGBM workflow

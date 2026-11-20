@@ -9,8 +9,10 @@ snapshot, and serves `/health` and `/predict` with FastAPI.
 
 **The included demo generates synthetic observations. Its scores and plots check
 the plumbing; they are not evidence about California beaches.** No real dataset,
-model, credentials or generated reports belong in git. The CI workflow is supplied;
-its hosted status will only be known after the code is pushed and Actions runs.
+model, credentials or generated reports belong in git. The badge reports the latest
+GitHub Actions result; local verification is recorded separately. CI pins Ubuntu
+24.04 and reads the exact Python version from `.python-version`, matching the
+available GitHub Python installer for that OS rather than following `ubuntu-latest`.
 
 ## Quick start (Docker is optional)
 
