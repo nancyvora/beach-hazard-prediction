@@ -1,0 +1,17 @@
+[project]
+name = "beach-hazard-prediction"
+version = "0.1.0"
+description = "California beach Enterococcus risk prediction: runnable project-update scaffold"
+requires-python = ">=3.13,<3.14"
+
+[tool.ruff]
+target-version = "py313"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+filterwarnings = ["ignore::FutureWarning"]

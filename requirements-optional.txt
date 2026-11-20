@@ -1,0 +1,2 @@
+# Optional model family; not needed for the first runnable logistic/API demo.
+lightgbm==4.6.0

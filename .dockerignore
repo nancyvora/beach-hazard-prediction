@@ -1,0 +1,15 @@
+.git
+.venv
+.demo
+data
+reports
+artifacts
+mlruns
+mlartifacts
+tests
+notebooks
+**/__pycache__
+.env
+*.pdf
+.coverage
+.DS_Store

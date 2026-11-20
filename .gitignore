@@ -9,3 +9,22 @@ __pycache__/
 venv/
 .env
 .ipynb_checkpoints/
+
+# Generated data, experiments and models
+data/**
+!data/**/
+!data/**/.gitkeep
+reports/
+artifacts/
+mlruns/
+mlartifacts/
+*.db
+*.db-shm
+*.db-wal
+.demo/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.DS_Store
+*.egg-info/
